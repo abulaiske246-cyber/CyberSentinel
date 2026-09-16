@@ -1,8 +1,20 @@
 import socket
 
 target = "127.0.0.1"
-start_port = int(input("Enter starting port: "))
-end_port = int(input("Enter ending port: "))
+try:
+    start_port = int(input("Enter starting port: "))
+    end_port = int(input("Enter ending port: "))
+except ValueError:
+    print("Invalid port number. Please enter numbers only.")
+    exit()
+
+if not (1 <= start_port <= 65535) or not (1 <= end_port <= 65535):
+    print("Invalid port range. Ports must be between 1 and 65535.")
+    exit()
+
+if start_port > end_port:
+    print("Invalid port range. Starting port must be less than or equal to ending port.")
+    exit()
 
 open_ports = []
 
