@@ -18,6 +18,9 @@ if start_port > end_port:
 
 open_ports = []
 
+print(f"\nStarting scan on {target}")
+print(f"Scanning ports {start_port}-{end_port}...\n")
+
 for port in range(start_port, end_port + 1):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(1)
@@ -25,10 +28,8 @@ for port in range(start_port, end_port + 1):
     result = sock.connect_ex((target, port))
 
     if result == 0:
-        print(f"port {port} is OPEN")
+        print(f"[+] Port {port} is OPEN")
         open_ports.append(port)
-    else:
-        print(f"port {port} is CLOSED")
 
     sock.close()
 
