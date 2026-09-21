@@ -1,4 +1,6 @@
 from rich.console import Console
+from scanner.port_scanner import run_scanner
+
 console = Console()
 
 def show_menu(): 
@@ -17,7 +19,7 @@ def main():
           choice = input("\nchoose an option: ")
 
           if choice == "1":
-              console.print("[yellow]Port Scanner selected.[/yellow]")
+              run_scanner()
           elif choice =="2":
               console.print("[yellow]DNS Lookup selected.[/yellow]")
           elif choice =="3":
