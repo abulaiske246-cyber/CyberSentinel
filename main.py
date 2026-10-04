@@ -1,6 +1,7 @@
 from rich.console import Console
 from scanner.port_scanner import run_scanner
 from recon.dns_lookup import dns_lookup
+from analyzer.http_headers import analyze_headers
 console = Console()
 
 def show_menu(): 
@@ -23,7 +24,7 @@ def main():
           elif choice =="2":
               dns_lookup()
           elif choice =="3":
-              console.print("[yellow]HTTP Header Analyzer selected.[/yellow]")
+              analyze_headers()
           elif choice =="4":
               console.print("[bold green]Goodbye![/bold green]")
               break
