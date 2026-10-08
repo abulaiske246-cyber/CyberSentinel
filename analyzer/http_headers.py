@@ -1,5 +1,7 @@
 import requests
+from rich.console import Console
 
+console = Console()
 
 def analyze_headers():
     url = input("Enter URL: ")
@@ -23,17 +25,21 @@ def analyze_headers():
         }
 
 
-        print("\nSecurity Header Analysis:")
-
+        console.print("\n[bold cyan]Security Header Analysis:[/bold cyan]")
+        score = 0
         for header, description in security_headers.items():
             if header in response.headers:
-                print(f"[+] {header}: PRESENT")
+                score += 1
+                console.print(f"[bold green][+] {header}: PRESENT[/bold green]")
+                print(f"    {description}")
             else:
-                print(f"[-] {header}: MISSING")
+                console.print(f"[bold yellow][-] {header}: MISSING[/bold yellow]")
                 print(f"    {description}")      
+        console.print(f"\n[bold cyan]Security Score: {score}/{len(security_headers)}[/bold cyan]")
 
     except requests.RequestException:
         print("Unable to connect to the URL.")
 
 if __name__ == "__main__":
     analyze_headers()
+
